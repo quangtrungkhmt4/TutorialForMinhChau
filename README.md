@@ -158,7 +158,139 @@ Có 2 toán tử điều kiện thông dụng là && và ||
    // trường hợp này chỉ cần thỏa mãn 1 trong hai điều kiện là true
 ```
 ## Cấu trúc điều kiện trong Java(if - else/if - else if - else)
+Cấu trúc if-else là câu lệnh để kiểm tra điều kiện
+```java
+   // 1. Cấu trúc if độc lập
+   if(<điều_kiện_cần_kiểm_tra>){
+      // việc cần làm khi thỏa mãn điều kiện trên
+   }
 
+   // VD của câu lệnh if
+   int number = 10;
+   if(number % 2 == 0){
+      System.out.println("Đây là một số chẵn");
+   }
+
+   // 2. Cấu trúc if - else
+   if(<điều_kiện_cần_kiểm_tra>){
+      // việc cần làm khi thỏa mãn điều kiện trên
+   }else{
+      // việc cần làm khi không thỏa mãn điều kiện trên
+   }
+
+   // VD của câu lệnh if - else
+   if(number % 2 == 0){
+      System.out.println("Đây là một số chẵn");
+   }else{
+      System.out.println("Đây là một số lẻ");
+   }
+
+   // 3. Cấu trúc if - else if - else
+   if(<điều_kiện_thứ_nhất_cần_kiểm_tra>){
+      // việc cần làm khi thỏa mãn điều kiện trên
+   }else if(<điều_kiện_thứ_hai_cần_kiểm_tra>){
+      // việc cần làm khi thỏa mãn điều kiện trên
+   }else{
+      // việc cần làm khi không thỏa mãn các điều kiện trên
+   }
+
+   //VD của câu lệnh if - else if - else
+   int day = 2;
+   if(day == 2){
+      System.out.println("Hôm nay là thứ 2");
+   }else if(day == 3){
+      System.out.println("Hôm nay là thứ 3");
+   }else{
+      System.out.println("Bố ai biết thứ mấy");
+   }
+```
+## Cấu trúc rẽ nhánh trong Java(switch - case)
+Cấu trúc rẽ nhánh trong Java là cấu trúc thực thi một câu lệnh với nhiều điều kiện. Nó giống như câu lệnh if - else if. Không phải tất cả kiểu dữ liệu đều có thể sử dụng switch-case, nó chỉ hỗ trợ các kiểu dữ liệu sau: byte, short, int, long, enum, String(từ Java 7 trở lên).
+```java
+   // Cấu trúc câu lệnh switch-case
+   switch(<giá_trị_cần_kiểm_tra>){
+       case: <giá_trị_1>
+          // doSomething
+          break; // không bắt buộc
+       case: <giá_trị_2>
+          // doSomething
+          break; // không bắt buộc
+       ....
+       default:
+          // doSomething những trường hợp còn lại
+   }
+
+   //VD cấu trúc switch-case
+   int number = 5;
+   switch(number){
+      case 1:
+         System.out.println("Số 1");
+         break;
+      case 5:
+         System.out.println("Số 5");
+         break;
+      default:
+         System.out.println("Số nào đó");
+   }
+   // output: Số 5
+```
+break; trong cấu trúc switch-case: khi một case thỏa mãn trường hợp thì các câu lệnh của case đó sẽ được thực thi, nếu kết thúc case đó cá break thì chương trình sẽ thoát khỏi cấu trúc switch-case, nếu không thì chương trình sẽ tiếp tục thực thi các câu lệnh của case bên dưới cho đến khi nào gặp được break.
+```java
+   int number = 10;
+   switch(number){
+      case 1:
+         System.out.println("Số 1");
+      case 10:
+         System.out.println("Số 10");
+      case 20:
+         System.out.println("Số 20");
+      default:
+         System.out.println("Số nào đó");
+   }
+   // output:
+   // Số 10
+   // Số 20
+   // Số nào đó
+```
+Như đầu bài viết có đề cập cấu trúc switch-case là cấu trúc có thể thực thi một câu lệnh mới nhiều điều kiện, ta có thể định nghĩa nhiều case cùng thực hiện một câu lệnh như sau:
+```java
+   int number = 3;
+   switch(number){
+      case 1:
+      case 3:
+      case 5:
+         System.out.println("Số nhỏ hơn 10");
+         break;
+      default:
+         System.out.println("Số lơn hơn 10");
+   }
+   //output: Số nhỏ hơn 10
+```
+## Vòng lặp trong Java
+Nói đến vòng lặp thì tức là ta sẽ thực hiện điều gì đó lặp đi lặp lại nhiều lần, có ba loại vòng lặp trong Java: for, while, do while.
+### Vòng lặp for
+Vòng lặp for là vòng lặp mà ta có thể quy ước điểm đầu vòng lặp, điểm cuối vòng lặp, số lần lặp
+```java
+   // Cú pháp vòng lặp for
+   for(<khởi_tạo_giá_trị_điểm_đầu> ; <điều_kiện_lặp> ; <bước_nhảy>){
+      // doSomething // vòng lặp lặp bao nhiều lần thì câu lệnh này sẽ được thực thi bấy nhiêu lần.
+   }
+
+   //VD cú pháp vòng lặp for
+   // Ta sẽ viết vòng lặp show ra màn hình dòng chữ "hế lồ bờ rô!" 10 lần
+   // bước 1 là xác định điểm đầu, ta khởi tạo 1 biến index có giá trị bằng 1
+   // bước 2 là xác định bước nhảy, mỗi lần lặp ta cho biến index tăng lên 1
+   // bước 3 là xác định điều kiện lặp, ở đây lặp 10 lần và mỗi lần lặp sẽ tăng index lên 
+   // 1 thì tức là điểm cuối của vòng lặp sẽ là khi index bằng 10, tức là vòng lặp sẽ chạy khi index <=10
+   for(int index = 1 ; index <= 10 ; index++){
+      System.out.println("hế lồ bờ rô!");
+   }
+
+   // ta cũng có thể viết thay bằng mỗi lần tăng index lên 1 đơn vị thì ra giảm index đi 1 đơn vị
+   for(int index = 10 ; index >=1 ; index--){
+      System.out.println("hế lồ bờ rô!");
+   }
+```
 
 
 ## License
